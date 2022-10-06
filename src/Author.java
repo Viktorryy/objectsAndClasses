@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Author {
     String authorFirstName;
     String authorLastName;
@@ -8,21 +10,34 @@ public class Author {
         this.authorLastName = authorLastName;
     }
 
+    //public String getFullName() {
+   //     return this.authorFirstName + " " + this.authorLastName;
+   // }
 
-
-    public String getFullName() {
-        return this.authorFirstName + " " + this.authorLastName;
-    }
-
-    // public static Author getFullName(Author djerom) {    }
-
-    public String getAuthorFirstName() {
+   public String getAuthorFirstName() {
         return authorFirstName;
     }
 
     public String getAuthorLastName() {
         return authorLastName;
     }
-   // public String getfFullName() {    }
+
+    public String toString() {
+        return this.authorFirstName + " " + this.authorLastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Author)) return false;
+        Author author = (Author) o;
+        return Objects.equals(getAuthorFirstName(), author.getAuthorFirstName()) && Objects.equals(getAuthorLastName(), author.getAuthorLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAuthorFirstName(), getAuthorLastName());
+    }
+
 
 }
